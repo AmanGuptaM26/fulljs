@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/AmanGuptaM26/fulljs/issues"
   },
-  "homepage": "https://github.com/AmanGuptaM26/fulljs#readme"
+  "homepage": "https://github.com/AmanGuptaM26/fulljs#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
