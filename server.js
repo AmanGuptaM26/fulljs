@@ -22,14 +22,19 @@ server.use(sassMiddleware({
 // express server will see ejs template under views folder
 server.set('view engine','ejs');
 
-import './serverRender';
+import serverRender from './serverRender';
 
 server.get('/',(req,res)=>{
     //res.send('Hello Express');
     //res.render('index'); // this is to render ejs template
-    res.render('index',{
-    content:'Hell EJS <em>template2</em>'    
-    }); // this is to render ejs template with parameter
+    serverRender()
+    .then(content => {
+        res.render('index',{
+            content    
+            }); // this is to render ejs template with parameter
+    })
+    .catch(console.error);
+    
 });
 
 

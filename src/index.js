@@ -1,7 +1,6 @@
 // video 1 from chapter 3
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types'
 
 
 //console.log(data);
@@ -9,7 +8,7 @@ import App from './components/App';
 
 
 ReactDOM.render(
-    <App />,
+    <App initialContestList={[]} />,
     document.getElementById('root')
 );
 
