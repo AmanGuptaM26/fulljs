@@ -1,16 +1,22 @@
 //video 4  node express server
 import config from './config';
-import express from 'express';
+
 // to import apis
 import apiRouter from './api';
 
-//import sassMiddleware from 'node-sass-middleware';
-//import path from 'path';
+import sassMiddleware from 'node-sass-middleware';
+import path from 'path';
 
-
-//import fs from 'fs'; // this is when to read file
-
+import express from 'express';
 const server = express();
+
+server.use(sassMiddleware({
+    src:path.join(__dirname,'sass'),
+    dest:path.join(__dirname,'sass'),
+    debug: true,
+    outputStyle: 'compressed'
+    //indentedSyntax: true,
+}));
 
 //setting up EJS embedded Javascript
 // express server will see ejs template under views folder

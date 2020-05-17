@@ -1,15 +1,19 @@
 import React from 'react';
 import Header from './Header'
 import ContestDetails from './ContestDetails'
-
+import data from '../testData';
 // making react statefull components with dynamic values
 class App extends React.Component{
       state= {
-          pageHeader:"Naming contests"
+          pageHeader:"Naming contests",
+          contestList:[]
       };
       //component life cycle method
       componentDidMount(){
           //do ajax call, timers, listeners
+          this.setState({
+              contestList:data.contestList
+          });
       }
       componentWillUnmount(){
         // clean timers, listeners
@@ -19,8 +23,8 @@ class App extends React.Component{
             <div className='App'>
               <Header message={this.state.pageHeader} />
               <div>
-                  {this.props.contestList.map(contest=>
-                    <ContestDetails {...contest}/>
+                  {this.state.contestList.map(contest=>
+                    <ContestDetails key={contest.id} {...contest}/>
                     )}
                   
               </div>
