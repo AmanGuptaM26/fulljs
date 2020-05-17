@@ -1,9 +1,13 @@
+<script type="text/javascript">
+window.initialData = <%- JSON.stringify(initialData) -%>
+
+</script>
 <%- include('header') -%>
     <%# = Math.random()  =%><%# javascritp variables used directly in ejs %>
     <%# = content  =%> <%# "=" Renders all text including html tag as string%>
     <%# - content  -%> <%# "-" Proper renders html tag not as string%>
     <div id="root">
-        <%- content  -%>
+        <%- initialMarkup  -%>
     </div>
 
     <%- include('footer') -%>

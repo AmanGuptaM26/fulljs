@@ -28,9 +28,10 @@ server.get('/',(req,res)=>{
     //res.send('Hello Express');
     //res.render('index'); // this is to render ejs template
     serverRender()
-    .then(content => {
+    .then(({initialMarkup,initialData}) => {
         res.render('index',{
-            content    
+            initialMarkup,
+            initialData
             }); // this is to render ejs template with parameter
     })
     .catch(console.error);
