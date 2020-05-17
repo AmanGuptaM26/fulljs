@@ -1,7 +1,8 @@
 import React from 'react';
 import Header from './Header'
 import ContestDetails from './ContestDetails'
-import data from '../testData';
+import axios from 'axios';
+
 // making react statefull components with dynamic values
 class App extends React.Component{
       state= {
@@ -11,9 +12,18 @@ class App extends React.Component{
       //component life cycle method
       componentDidMount(){
           //do ajax call, timers, listeners
-          this.setState({
-              contestList:data.contestList
-          });
+axios.get('/api/contestList')
+.then(resp => {
+    //console.log(resp.data.contestList);
+    this.setState({
+        contestList:resp.data.contestList
+    });
+})
+.catch(error => {
+    console.error(error);
+});
+
+         
       }
       componentWillUnmount(){
         // clean timers, listeners
