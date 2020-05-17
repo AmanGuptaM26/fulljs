@@ -22,6 +22,8 @@ server.use(sassMiddleware({
 // express server will see ejs template under views folder
 server.set('view engine','ejs');
 
+import './serverRender';
+
 server.get('/',(req,res)=>{
     //res.send('Hello Express');
     //res.render('index'); // this is to render ejs template
@@ -38,6 +40,6 @@ server.use(express.static('public'));
 //api routing
 server.use('/api',apiRouter);
 
-server.listen(config.port, () => {
+server.listen(config.port,config.host ,() => {
     console.info('Express listen on port',config.port);
 });
