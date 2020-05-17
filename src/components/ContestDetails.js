@@ -1,5 +1,7 @@
 import React from 'react';
 
+
+
 const ContestDetails =(contest) =>(
 <div className="ContestDetails">
 <div className='category-name'>

@@ -25,8 +25,6 @@ server.set('view engine','ejs');
 import serverRender from './serverRender';
 
 server.get('/',(req,res)=>{
-    //res.send('Hello Express');
-    //res.render('index'); // this is to render ejs template
     serverRender()
     .then(({initialMarkup,initialData}) => {
         res.render('index',{

@@ -3,7 +3,6 @@ import ReactDOMServer from 'react-dom/server'
 import config from './config';
 import axios from 'axios';
 import App from './src/components/App'
-import { response } from 'express';
 
 const serverRender = () =>
 axios.get(`${config.serverUrl}/api/contestList`)
