@@ -13,14 +13,14 @@ const getApiUrl = contestId => {
 };
 
 const getInitialData=(contestId,apiData)=>{
- //   console.log(apiData);
+   //console.log(contestId);
 if(contestId)
 {
-    console.log(apiData.id);
+  //  console.log(apiData.contestDetails);
     return{
-        selectedContestId:apiData.contestDetails.id,
+        selctedContestId:contestId,
         contestList:{
-            [apiData.id]:apiData.contestDetails
+            [apiData.contestDetails.id]:apiData.contestDetails
         }
     };
 }
