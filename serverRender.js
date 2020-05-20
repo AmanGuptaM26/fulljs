@@ -10,7 +10,7 @@ axios.get(`${config.serverUrl}/api/contestList`)
     //console.log(res.data.contestList);
    return{
        initialMarkup: ReactDOMServer.renderToString(
-        <App initialContestList={res.data.contestList}/>
+        <App initialData={res.data}/>
         ),
         initialData: res.data
        }

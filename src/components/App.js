@@ -4,6 +4,7 @@ import ContestDetails from './ContestDetails';
 import EachContest from './EachContest';
 import ContestList from './ContestList';
 import * as api from '../../allApi';
+import PropTypes from 'prop-types';
 //import axios from 'axios';
 
 //using html history back
@@ -13,10 +14,14 @@ const pushState =(obj,url) =>
 
 // making react statefull components with dynamic values
 class App extends React.Component{
-      state= {
-          pageHeader:"Naming contests",
-          contestList:this.props.initialContestList
-      };
+    static propTypes= {
+        initialData: PropTypes.object.isRequired
+    }
+    state=this.props.initialData;
+    //   state= {
+    //       //pageHeader:"Naming contests",
+    //       contestList:this.props.initialContestList
+    //   };
       //component life cycle method
       componentDidMount(){
           //do ajax call, timers, listeners
@@ -37,7 +42,7 @@ class App extends React.Component{
         api.fetchEachContestByID(contestId).then(contest =>{
             // set state as per selected contest
           this.setState({
-            pageHeader:contest.contestName,
+           // pageHeader:contest.contestName,
             selctedContestId:contest.id,
             contestList:{
                 ...this.state.contestList,
@@ -53,6 +58,22 @@ class App extends React.Component{
         // }); 
       };
 
+    getCurrentContest()
+    {
+        return this.state.contestList[this.state.selctedContestId];
+    }
+    getPageHeader()
+    {
+        if(this.getSelectedContestId())
+        {
+            return this.getCurrentContest().contestName;
+        }
+        return "Naming Contest"
+    }
+    getSelectedContestId()
+    {
+        return this.state.selctedContestId;
+    }
       selctedContestContent(){
          if(this.state.selctedContestId){
              //just for testing
@@ -62,7 +83,7 @@ class App extends React.Component{
                     {...this.state.contestList[this.state.selctedContestId]}/>*/
 
                     return <EachContest
-                    {...this.state.contestList[this.state.selctedContestId]}
+                    {...this.getCurrentContest()}
                     />
          }
          return <ContestList 
@@ -74,7 +95,7 @@ class App extends React.Component{
     render(){
         return (
             <div className='App'>
-              <Header message={this.state.pageHeader} />
+              <Header message={this.getPageHeader()} />
               {/* <ContestList 
               onContestClick={this.fetchContest}
               contestList={this.state.contestList}/>
