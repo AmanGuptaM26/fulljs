@@ -36,7 +36,7 @@ class App extends React.Component{
               {
                 selctedContestId:contestId
               },
-            `/contest/${contestId}`
+            `/contestList/${contestId}`
           );
 
         api.fetchEachContestByID(contestId).then(contest =>{
