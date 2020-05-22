@@ -5,8 +5,12 @@ class EachContest extends Component{
     render(){
         return(
             <div className="EachContest">
-              {this.props.id}
-              {this.props.desc}
+              <div className="each-contest-details">{this.props.desc}</div>
+              {/* {this.props.id} */}
+              <div className="home-link link">
+              {/* onClick={this.props.backToListClick()}> */}
+                  Back to list
+              </div>
             </div>
         );
     }
@@ -14,7 +18,8 @@ class EachContest extends Component{
 
 EachContest.propsTypes = {
     id: PropTypes.number.isRequired,
-    desc: PropTypes.string
+    desc: PropTypes.string,
+  //  backToListClick:PropTypes.func.isRequired,
 };
 
 export default EachContest;

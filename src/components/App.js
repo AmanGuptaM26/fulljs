@@ -32,6 +32,7 @@ class App extends React.Component{
       
       // to change url to slected content
       fetchContest=(contestId)=>{
+        console.log(contestId);
           pushState(
               {
                 selctedContestId:contestId
@@ -43,10 +44,10 @@ class App extends React.Component{
             // set state as per selected contest
           this.setState({
            // pageHeader:contest.contestName,
-            selctedContestId:contest.id,
+            selctedContestId:contestId,
             contestList:{
                 ...this.state.contestList,
-                [contest.id]:contest
+                [contestId]:contest
             }
         });
         });
@@ -57,6 +58,25 @@ class App extends React.Component{
         //     selctedContestId:contestId,
         // }); 
       };
+
+      // to change url to all content
+      fetchContestList=()=>{
+        pushState(
+            {
+              selctedContestId:null
+            },
+          '/'
+        );
+
+      api.fetchAllContestList().then(allContest =>{
+          // set state as per selected contest
+        this.setState({
+         // pageHeader:contest.contestName,
+          selctedContestId:null,
+          contestList:allContest
+      });
+      });
+    };
 
     getCurrentContest()
     {
@@ -75,6 +95,8 @@ class App extends React.Component{
         return this.state.selctedContestId;
     }
       selctedContestContent(){
+        console.log(1111);
+        console.log(this.state.selctedContestId);
          if(this.state.selctedContestId){
              //just for testing
              /*return <ContestDetails
@@ -83,7 +105,9 @@ class App extends React.Component{
                     {...this.state.contestList[this.state.selctedContestId]}/>*/
 
                     return <EachContest
-                    {...this.getCurrentContest()}
+                    // backToListClick={this.fetchContestList}
+                    {...this.getCurrentContest() }
+                  
                     />
          }
          return <ContestList 
