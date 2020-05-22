@@ -11,6 +11,10 @@ import PropTypes from 'prop-types';
 const pushState =(obj,url) =>
  window.history.pushState(obj,'',url);
 
+ const onPopState = handler => {
+ window.onpopstate=handler;
+ };
+
 
 // making react statefull components with dynamic values
 class App extends React.Component{
@@ -25,9 +29,15 @@ class App extends React.Component{
       //component life cycle method
       componentDidMount(){
           //do ajax call, timers, listeners
+          onPopState((event) => {
+            this.setState({
+              selctedContestId:(event.state || {}).selctedContestId
+            });
+          });
       }
       componentWillUnmount(){
         // clean timers, listeners
+        onPopState(null);
       }
       
       // to change url to slected content
